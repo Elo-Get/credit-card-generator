@@ -1,56 +1,74 @@
 from random import *
+
 import string
 import re
-import Index
+
 a = 0
 
 
+print("    ╭─━━━━━─╯ Generateur de cc ╰─━━━━━─╮\n          created by ASIAN_P0WER \n              le 04/10/2020 \n")   #graphisme simple mais rendant le programme un minimum potable visuelement
 
-def generator():
-     a = randint(0, 9)
-     b = randint(0, 9)   
-     c = randint(0, 9)   
-     d = randint(0, 9)     
-     e = randint(0, 9)   
-     f = randint(0, 9)   
-     g = randint(0, 9)   
-     h = randint(0, 9)   
-     i = randint(0, 9)   
-     j = randint(0, 9)
-     l = (bincc, a, b, c, d, e, f, g, h, i, j)
-     re.sub(r"\s+", "", l)
-     print(l)   
 
-def erreur1():
-    print("fin")
-    a = 0
 
-while a == 0:
-    
-    #demande le bin de la cc pour la generer ( un bin = 6 chiffre)
-    bincc = int(input("entrer le bin de votre choix (6 chiffre) : "))
-    
+
+
+while a == 0: "boucle pour le programme 
+    bincc = int(input("  Entrer le bin de votre choix (6 chiffre) :  "))
+    o = 202
     a = 1
 
-    #regarde si le bin est un minimum valide c'est a dire superieur a 100000 mais inferieur a 999999
-    if bincc > 100000 and bincc < 999999:
-        generation = int(input("nombre de cc a generer : "))
-        
-        #regarde combien de cc la personne veut generer (minimum 1 max infini)
-        if generation == 0:
-            erreur1()               #si la personne marque 0 une erreur s'affiche et le programe recommence tous 
-        
-        else:    #sinon genere le nombre de cc demandé
+
+    if bincc < 100000 or bincc > 999999: #regarde si le bin est bon ou pas 
+        print("   \n Votre bin est trop petit ou trop grands ")   #si differente du schema demandé envoie d'une erreur
+        a = 0
+    else:   #sinon continu le processus 
+        generation = int(input("          nombre de cc a generer : "))     #demande du nombre de cc voulu (1 a infini)
+        if generation == 0:      #si la demande = 0 , le programme revient au debut
+            print("fin")
+            a = 0
             
-            print(" ")                       
-            print("voici les cartes : ")    
-            print(" ")
+        else:       #si toutes les conditions sont respecté, genere le nombre de cc demandé 
+            
+            print("   \n voici les cartes :   \n  ")
             for i in range(generation):
-                generator()
-                  
+                l = [bincc]
+                p = []
+                m = []
+                r = [o]
+                for i in range(10):
+                    l.append(randint(0, 9))
+                    card = ''.join(str(elem) for elem in l) 
+                for i in range(1):
+                    m.append(randint(0, 1))
+                    mois = ''.join(str(elem) for elem in m)
+                    if mois == 0:
+                        m.append(randint(1, 9))
+                        mois = ''.join(str(elem) for elem in m)
+                    elif mois == 1:
+                        m.append(randint(0, 2))
+                        mois = ''.join(str(elem) for elem in m)
+                    else:
+                        m.append(randint(1, 2))
+                        mois = ''.join(str(elem) for elem in m)
+                        
+                for i in range(1):
+                    r.append(randint(0, 9))
+                    annee = ''.join(str(elem) for elem in r)
+
+                for i in range(3):
+                    p.append(randint(0, 9))
+                    ccv = ''.join(str(elem) for elem in p)
+
+                taxe = card, "|", mois, '|', annee, "|", ccv
+
+                total = "".join(str(elem) for elem in taxe)
+                a=0
+                
+
 
                 
-                a = 0
-    else:                           #si le bin est trop petit une erreur apparait et le programe redemarre
-        print("votre bin est trop petit ou trop grands")
-        a = 0
+
+                print(total)  #fin de la generation, renvoie le tout
+    print("\n")
+
+                
